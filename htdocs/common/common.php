@@ -17,7 +17,8 @@ echo '<a href="'.$url.'">'.$name.'</a></li>
 ';
 }
 
-function navbar($title, $active) {
+function navbar($title, $active, $login) {
+// nav header
 echo '
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
@@ -29,16 +30,38 @@ echo '
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="#">'.$title.'</a>
-		</div>
+		</div>';
 
-		<div id="navbar" class="collapse navbar-collapse">
+// nav links
+echo '	<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
 ';
 				navelem("Home",   "/",      $active == 1);
 				navelem("Goats",  "/goats", $active == 2);
-				navelem("Page 3", "#blah",  $active == 3);
-				navelem("Page 4", "#blah2", $active == 4);
-echo '			</ul>
+echo '</ul>';
+
+// right side
+echo '
+<ul class="nav navbar-nav navbar-right">
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+';
+				if($login) {
+					navelem("Settings", "/account",    False);
+					navelem("Orders",   "/order?m=my", False);
+					navelem("Wishlist", "/wishlist",   False);
+					echo '<li role="separator" class="divider"></li>';
+					navelem("Log out",  "#",           False);
+				}
+				else {
+					navelem("Sign up", "/register", False);
+					echo '<li role="separator" class="divider"></li>';
+					navelem("Log in",  "/login",    False);
+				}
+echo '						</ul>
+				</li>
+			</ul>
 		</div>
 	</div>
 </nav>

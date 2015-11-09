@@ -6,7 +6,7 @@
 		<?php head_tags(); ?>
 	</head>
 	<body>
-		<?php navbar("Welcome", 1); ?>
+		<?php navbar("Welcome", 1, False); ?>
 		<main class="container">
 			<article class="welcome-text">
 				<h1>Welcome to Maaatch.com!</h1>
