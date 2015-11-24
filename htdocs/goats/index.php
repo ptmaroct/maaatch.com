@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Browse Goats</title>
+		<title>Maaatch&nbsp;&nbsp;|&nbsp;&nbsp;Goats</title>
 		<?php require '/var/www/maaatch.com/htdocs/common/common.php'; ?>
 		<?php head_tags(); ?>
 	</head>

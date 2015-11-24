@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Maaatch.com</title>
+		<title>Maaatch&nbsp;&nbsp;|&nbsp;&nbsp;Welcome</title>
 		<?php require '/var/www/maaatch.com/htdocs/common/common.php'; ?>
 		<?php head_tags(); ?>
 	</head>
 	<body>
-		<?php navbar("Welcome", 1, False); ?>
+		<?php navbar("Welcome", 1, isset($_GET["login"])); ?>
 		<main class="container">
 			<article class="welcome-text">
 				<h1>Welcome to Maaatch.com!</h1>
@@ -14,11 +14,11 @@
 				<br/>
 				<br/>
 				We provide a dating-site feature set to match you with the goat
-				of your dreams. Users will be able to create a profile (chosen
-				by our proprietary matching al<i>goat</i>rithm) with their goat
-				preferences and browse goat profiles. Once a user selects a
-				goat, they will be able to place an order or add to their wish
-				list. Allow 4 to 6 weeks for delivery.
+				of your dreams. Users will be able to create a profile, browse
+				goats profiles, and view their goat matches, chosen by our
+				proprietary maaatching al<i>goat</i>rithm. Once a user selects
+				a goat, they will be able to place an order or add to their
+				wish list. Allow 4 to 6 weeks for delivery.
 				</p>
 			</article>
 		</main>

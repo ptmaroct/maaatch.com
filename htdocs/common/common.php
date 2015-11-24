@@ -52,7 +52,7 @@ echo '
 					navelem("Orders",   "/order?m=my", False);
 					navelem("Wishlist", "/wishlist",   False);
 					echo '<li role="separator" class="divider"></li>';
-					navelem("Log out",  "#",           False);
+					navelem("Log out",  "/",           False);
 				}
 				else {
 					navelem("Sign up", "/register", False);
