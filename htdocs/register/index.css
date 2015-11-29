@@ -23,17 +23,18 @@ body {
           box-sizing: border-box;
   padding: 10px;
   font-size: 16px;
+  border-radius: 0;
+  margin-bottom: -1px;
 }
 .form-signin .form-control:focus {
   z-index: 2;
 }
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+.form-signin #inputUser {
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
 }
-.form-signin input[type="password"] {
+.form-signin #inputPassword {
   margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 }

@@ -17,7 +17,7 @@ echo '<a href="'.$url.'">'.$name.'</a></li>
 ';
 }
 
-function navbar($title, $active, $login) {
+function navbar($title, $active) {
 // nav header
 echo '
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -44,15 +44,16 @@ echo '</ul>';
 echo '
 <ul class="nav navbar-nav navbar-right">
 	<li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+		' . ($_SESSION['login']?$_SESSION['name']:'Account') . '<span class="caret"></span></a>
 			<ul class="dropdown-menu">
 ';
-				if($login) {
+				if($_SESSION['login']) {
 					navelem("Settings", "/account",    False);
 					navelem("Orders",   "/order?m=my", False);
 					navelem("Wishlist", "/wishlist",   False);
 					echo '<li role="separator" class="divider"></li>';
-					navelem("Log out",  "/",           False);
+					navelem("Log out",  "/login/logout.php",           False);
 				}
 				else {
 					navelem("Sign up", "/register", False);

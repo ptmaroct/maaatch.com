@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,7 +9,7 @@
 		<?php head_tags(); ?>
 	</head>
 	<body>
-		<?php navbar("Welcome", 1, isset($_GET["login"])); ?>
+		<?php navbar("Welcome", 1); ?>
 		<main class="container">
 			<article class="welcome-text">
 				<h1>Welcome to Maaatch.com!</h1>
