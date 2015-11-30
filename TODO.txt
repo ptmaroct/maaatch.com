@@ -1,0 +1,17 @@
+TODO:
+
+Searches
+	Goat profiles
+	Goat matcher
+	User wishlists
+
+Viewers
+	others wishlist
+	goat profile
+	orders
+
+Editors
+	user settings
+	user wishlist
+	goat profile (admin)
+	order form
