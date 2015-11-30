@@ -1,0 +1,48 @@
+#!/bin/bash
+
+goatdata="/var/www/maaatch.com/sitedata/goats"
+dbquery(){ mysql -D maaatch -u maaatch_admin --password=uoGeikeen9Iyie9Miefo -e "$@"; }
+
+read -ep "Name: " name
+
+while [ -z $gender ]; do
+	read -ep "Gender: (m|f) " gender
+	if [[ $gender =~ ^[mM].*$ ]]; then
+		gender="male"
+	elif [[ $gender =~ ^[fF].*$ ]]; then
+		gender="female"
+	else
+		gender=""
+	fi
+done
+
+while [ -z $age ]; do
+	read -ep "Age: " age
+	if ! [[ $age =~ ^[0-9]+$ ]]; then
+		age=""
+	fi
+done
+
+while [ -z $price ]; do
+	read -ep "Price (whole dollars): $" price
+	if ! [[ $price =~ ^[0-9]+$ ]]; then
+		price=""
+	fi
+done
+
+read -ep "Bio: " bio
+
+echo
+echo Name: $name
+echo Gender: $gender
+echo Age: $age
+echo Price: \$$price
+echo Bio: $bio
+
+lastid="$(dbquery "INSERT INTO goats (name, gender, age, price) VALUES
+	('$name', '$gender', '$age', '$price');
+	SELECT LAST_INSERT_ID();" -sN)"
+
+newdir="$goatdata/goat$lastid"
+mkdir "$newdir"
+echo "$bio" > "${newdir}/bio"
