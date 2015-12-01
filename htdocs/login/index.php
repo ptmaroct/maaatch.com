@@ -22,10 +22,11 @@
 				<label for="inputPassword" class="sr-only">Password</label>
 				<input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
 				
-				<?php if(isset($_GET['badlogin'])) { echo '<div id="notifier">Username or password incorrect.</div>'; } ?>
+				<?php if(isset($_GET['badlogin'])) { echo '<div class="text-danger text-center">Username or password incorrect.</div>'; } ?>
 
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 			</form>
+            <div class="text-center"><a href="/register">Sign Up</a></div>
 		</main>
 		<?php bootstrap_js(); ?>
 	</body>

@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    require '/var/www/maaatch.com/htdocs/common/utility.php';
+    login_redir("/login/", true);
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,7 +11,7 @@
 		<?php head_tags(); ?>
 	</head>
 	<body>
-		<?php navbar("Browse Goats", 2, False); ?>
+		<?php navbar("Browse Goats", 2); ?>
 		<main class="container">
 		</main>
 		<?php bootstrap_js(); ?>

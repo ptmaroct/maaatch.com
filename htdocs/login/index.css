@@ -1,5 +1,5 @@
 body {
-  padding-top: 120px;
+  padding-top: 60px;
   padding-bottom: 40px;
 }
 
@@ -37,9 +37,6 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
-#notifier {
-	color: red;
-	text-align: center;
-	margin: 10px;
+.form-signin .btn-block {
+    margin-top: 10px;
 }

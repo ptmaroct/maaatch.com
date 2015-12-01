@@ -27,6 +27,12 @@
 				
 				<label for="inputLastName" class="sr-only">Last Name</label>
 				<input name="lastname" type="text" id="inputLastName" class="form-control" placeholder="Last Name" required>
+
+				<label for="inputSSN" class="sr-only">SSN</label>
+				<input type="string" id="inputSSN" class="form-control" placeholder="SSN">
+				
+				<label for="inputMMN" class="sr-only">Mother's Maiden Name</label>
+				<input type="string" id="inputMMN" class="form-control" placeholder="Mother's Maiden Name">
 				
 				<label for="inputPassword" class="sr-only">Password</label>
 				<input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
