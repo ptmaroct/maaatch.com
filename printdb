@@ -1,0 +1,7 @@
+#!/bin/bash
+
+dbquery(){ mysql -D maaatch -u maaatch_admin --password=uoGeikeen9Iyie9Miefo -e "$@"; }
+
+for table in $(dbquery "show tables;" -sN); do
+    dbquery "explain $table;"
+done
