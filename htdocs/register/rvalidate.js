@@ -1,13 +1,18 @@
 var ufield = '#inputUser';
 var form1 = 'form:first';
-var good;
+var pw1 = '#inputPassword1';
+var pw2 = '#inputPassword2';
+var goodun;
+var goodpw;
 
 $(document).ready( function() {
 	$(ufield).keyup(usercheck);
+	$(pw1+","+pw2).keyup(pwcheck);
 	$(form1).submit(function(ev) {
 		ev.preventDefault();
 		usercheck();
-		if(good) {
+		pwcheck();
+        if(goodun && goodpw) {
 			this.submit();
 		}
 	});
@@ -20,4 +25,13 @@ function usercheck() {
 			$(ufield).css('background-color',
 				$(ufield).val()?(good?'PaleGreen':'Pink'):'initial');
 		});
+}
+
+function pwcheck() {
+    if($(pw1).val() && $(pw2).val()) {
+        goodpw = ($(pw1).val() == $(pw2).val());
+        $(pw1+","+pw2).css('background-color', goodpw?'PaleGreen':'Pink');
+    } else {
+        $(pw1+","+pw2).css('background-color','initial');
+    }
 }

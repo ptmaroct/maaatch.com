@@ -34,10 +34,13 @@
 				<label for="inputMMN" class="sr-only">Mother's Maiden Name</label>
 				<input type="string" id="inputMMN" class="form-control" placeholder="Mother's Maiden Name">
 				
-				<label for="inputPassword" class="sr-only">Password</label>
-				<input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+				<label for="inputPassword1" class="sr-only">Password</label>
+				<input name="password" type="password" id="inputPassword1" class="form-control" placeholder="Password" required>
 				
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+				<label for="inputPassword2" class="sr-only">Repeat Password</label>
+				<input type="password" id="inputPassword2" class="form-control" placeholder="Repeat Password" required>
+				
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 			</form>
 		</main>
 		<?php bootstrap_js(); ?>
