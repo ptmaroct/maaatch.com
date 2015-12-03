@@ -1,0 +1,17 @@
+/* CSS for About Page on Maaatch.com
+Date: December 2nd, 2015
+index.css */
+
+body {
+	margin-top: 75px;
+    text-align: center;
+}
+
+.row {
+    padding-top: 30px;
+}
+
+label {
+	padding-top: 10px;
+	font-size: 16px;
+}
