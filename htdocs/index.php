@@ -13,10 +13,10 @@
 		<main class="container">
 			<article class="welcome-text">
 				<h1>Welcome to Maaatch.com!</h1>
-				<p class="lead">Your first choice in mail-order goats.
-					<br/>
-					<br/>
-					We provide a dating-site feature set to match you with the goat
+				<p class="lead">Your first choice in mail-order goats.</p>
+                <img class="img-rounded" id="goatpic" src="images/goat-small.jpg" alt="goat"/>
+				<p class="lead">
+                    We provide a dating-site feature set to match you with the goat
 					of your dreams. Users will be able to create a profile, browse
 					goats profiles, and view their goat matches, chosen by our
 					proprietary maaatching al<i>goat</i>rithm. Once a user selects

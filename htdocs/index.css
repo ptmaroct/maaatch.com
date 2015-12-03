@@ -1,7 +1,10 @@
 body {
-	padding-top: 50px;
+    padding-top: 50px;
 }
 .welcome-text {
-	padding: 40px 15px;
-	text-align: center;
+    text-align: center;
+}
+
+#goatpic {
+    margin: 30px;
 }
