@@ -1,6 +1,6 @@
 <?php
-	require('/var/www/maaatch.com/db_auth.php');
-	require('/var/www/maaatch.com/htdocs/common/utility.php');
+	require '/var/www/maaatch.com/db_auth.php';
+	require '/var/www/maaatch.com/htdocs/common/utility.php';
 	
 	$db = new mysqli($db_host, $db_user, $db_pass, $db_name);
 	$stmt = $db->prepare('SELECT username FROM users WHERE username = ?;');
