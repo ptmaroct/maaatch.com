@@ -49,9 +49,9 @@
                     $stmt = $db->prepare('SELECT goats.name AS name, goats.price AS price,
                                           goats.gender AS gender, goats.age AS age
                                           FROM users
-                                          INNER JOIN wishlist
+                                          RIGHT JOIN wishlist
                                           ON users.user_id = wishlist.user
-                                          RIGHT JOIN goats
+                                          LEFT JOIN goats
                                           ON wishlist.goat = goats.goat_id
                                           WHERE username = ?
                                           ORDER BY goats.name;
