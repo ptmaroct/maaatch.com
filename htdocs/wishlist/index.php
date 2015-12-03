@@ -28,45 +28,52 @@
 	<body>
 		<?php navbar("Browse Goats", 2); ?>
 		<main class="container">
-            <h1><?php echo $active_name; ?>'s Wishlist</h1>
-                <table class="table table-hover">
-                    <tr>
-                        <th>Goat</th>
-                        <th>Gender</th>
-                        <th>Age</th>
-                        <th>Price</th>
-                        <?php if($self) { echo '<th></th>'; } ?>
-                    <tr>
-                    <?php // create wishlist for logged in user unless get variable 'uname' is set to username
-                        $stmt = $db->prepare('SELECT goats.name AS name, goats.price AS price,
-                                              goats.gender AS gender, goats.age AS age
-                                              FROM users
-                                              INNER JOIN wishlist
-                                              ON users.user_id = wishlist.user
-                                              RIGHT JOIN goats
-                                              ON wishlist.goat = goats.goat_id
-                                              WHERE username = ?
-                                              ORDER BY goats.name;
-                                              ');
-                        $stmt->bind_param('s', $active_user);
-                        $stmt->execute();
-                        $res = $stmt->get_result();
+            <h1>
+                <?php
+                    if($active_name) {
+                        echo $active_name .'\'s Wishlist';
+                    } else {
+                        echo 'User "' . $active_user . '" not found. :(';
+                    }
+                ?>
+            </h1>
+            <table class="table table-hover">
+                <tr>
+                    <th>Goat</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Price</th>
+                    <?php if($self) { echo '<th></th>'; } ?>
+                <tr>
+                <?php // create wishlist for logged in user unless get variable 'uname' is set to username
+                    $stmt = $db->prepare('SELECT goats.name AS name, goats.price AS price,
+                                          goats.gender AS gender, goats.age AS age
+                                          FROM users
+                                          INNER JOIN wishlist
+                                          ON users.user_id = wishlist.user
+                                          RIGHT JOIN goats
+                                          ON wishlist.goat = goats.goat_id
+                                          WHERE username = ?
+                                          ORDER BY goats.name;
+                                          ');
+                    $stmt->bind_param('s', $active_user);
+                    $stmt->execute();
+                    $res = $stmt->get_result();
 
-                        while($goat = $res->fetch_assoc()) {
-                            echo '<tr>';
-                            echo '<td>' . $goat['name'] . '</td>';
-                            echo '<td>' . $goat['gender'] . '</td>';
-                            echo '<td>' . $goat['age'] . '</td>';
-                            echo '<td>$' . $goat['price'] . '</td>';
-                            if($self) {
-                            echo '<td><button class="btn btn-danger btn-xs">
-                                Remove</button></td>';
-                            }
-                            echo '</tr>';
+                    while($goat = $res->fetch_assoc()) {
+                        echo '<tr>';
+                        echo '<td>' . $goat['name'] . '</td>';
+                        echo '<td>' . $goat['gender'] . '</td>';
+                        echo '<td>' . $goat['age'] . '</td>';
+                        echo '<td>$' . $goat['price'] . '</td>';
+                        if($self) {
+                        echo '<td><button class="btn btn-danger btn-xs">
+                            Remove</button></td>';
                         }
-                    ?>
-                </table>
-            </div>
+                        echo '</tr>';
+                    }
+                ?>
+            </table>
             <div class="text-center">
                 <?php // if on own wish list, put 'save' button to update database
                         // button creates hidden form like http://bit.ly/1TlLVXm  
