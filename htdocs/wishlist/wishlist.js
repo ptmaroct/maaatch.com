@@ -3,6 +3,10 @@ var removal = new Array();
 $(document).ready( function() {
     setrm();
     setundo();
+    $('#submit').click(function() {
+        $.post("wishlist.php", { rem: removal.join('|') });
+        location.reload();
+    });
 });
 
 function setrm() {

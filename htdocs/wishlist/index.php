@@ -28,7 +28,7 @@
         <script src="wishlist.js"></script>
 	</head>
 	<body>
-		<?php navbar("Browse Goats", 2); ?>
+		<?php navbar("Wishlist", 0); ?>
 		<main class="container">
             <h1>
                 <?php
@@ -83,7 +83,7 @@
                 <?php // if on own wish list, put 'save' button to update database
                         // button creates hidden form like http://bit.ly/1TlLVXm  
                     if($self) {
-                        echo '<button class="btn btn-lg btn-primary">Save</button>';
+                        echo '<button class="btn btn-lg btn-primary" id="submit">Save</button>';
                     }
                 ?>
             </div>

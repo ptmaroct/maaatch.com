@@ -34,6 +34,9 @@
 				<label for="inputMMN" class="sr-only">Mother's Maiden Name</label>
 				<input type="string" id="inputMMN" class="form-control" placeholder="Mother's Maiden Name">
 				
+				<label for="inputBT" class="sr-only">Blood Type</label>
+				<input type="string" id="inputBT" class="form-control" placeholder="Blood Type">
+				
 				<label for="inputPassword1" class="sr-only">Password</label>
 				<input name="password" type="password" id="inputPassword1" class="form-control" placeholder="Password" required>
 				

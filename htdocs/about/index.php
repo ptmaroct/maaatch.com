@@ -25,7 +25,7 @@
             </p>
 			<section id="couples" class="row">
                 <div class="col-sm-6">
-                    <img class="img-rounded center-block" id="couple1" src="images/JM.jpg" alt="couple1"/>
+                    <img class="img-rounded center-block img-responsive" id="couple1" src="images/JM.jpg" alt="couple1"/>
                     <label for="couple1">Jeff and Maaary</label>
                 </div>
 				<p class="col-sm-6 lead text-left" id="coupledescription">

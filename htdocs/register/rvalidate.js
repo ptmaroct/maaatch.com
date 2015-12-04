@@ -6,25 +6,24 @@ var goodun;
 var goodpw;
 
 $(document).ready( function() {
-	$(ufield).keyup(usercheck);
-	$(pw1+","+pw2).keyup(pwcheck);
-	$(form1).submit(function(ev) {
-		ev.preventDefault();
-		usercheck();
-		pwcheck();
+    $(ufield).keyup(usercheck);
+    $(pw1+","+pw2).keyup(pwcheck);
+    $(form1).submit(function(ev) {
+        ev.preventDefault();
+        usercheck();
+        pwcheck();
         if(goodun && goodpw) {
-			this.submit();
-		}
-	});
+            this.submit();
+        }
+    });
 });
 
 function usercheck() {
-	$.post('usercheck.php', { username: $(ufield).val() },
-		function(result) {
-			goodun = (result == '1');
-			$(ufield).css('background-color',
-				$(ufield).val()?(goodun?'PaleGreen':'Pink'):'initial');
-		});
+    $.post('usercheck.php', { username: $(ufield).val() }, function(result) {
+        goodun = (result == '1');
+        $(ufield).css('background-color',
+        $(ufield).val()?(goodun?'PaleGreen':'Pink'):'initial');
+    });
 }
 
 function pwcheck() {

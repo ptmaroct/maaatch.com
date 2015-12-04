@@ -1,17 +1,18 @@
 TODO:
 
 Searches
-	Goat profiles
 	Goat matcher
-	User wishlists
+	User wishlists (Andy)
 
 Viewers
-	others wishlist
-	goat profile
+	goat profile (Jesse)
 	orders
 
 Editors
 	user settings
-	user wishlist
 	goat profile (admin)
 	order form
+
+Extra
+	set order form goat name to red if non-existent
+	set add to wishlist button to red if already in wishlist

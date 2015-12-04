@@ -50,16 +50,16 @@ echo '
 			<ul class="dropdown-menu">
 ';
 				if(isset($_SESSION['login']) && $_SESSION['login']) {
-					navelem("Settings", "/settings",    False);
-					navelem("Orders",   "/order?m=my", False);
-					navelem("Wishlist", "/wishlist",   False);
+					navelem("Settings", "/settings/",    False);
+					navelem("Orders",   "/order/", False);
+					navelem("Wishlist", "/wishlist/",   False);
 					echo '<li role="separator" class="divider"></li>';
 					navelem("Log out",  "/login/logout.php",           False);
 				}
 				else {
-					navelem("Sign up", "/register", False);
+					navelem("Sign up", "/register/", False);
 					echo '<li role="separator" class="divider"></li>';
-					navelem("Log in",  "/login",    False);
+					navelem("Log in",  "/login/",    False);
 				}
 echo '						</ul>
 				</li>

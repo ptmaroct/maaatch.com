@@ -1,55 +1,56 @@
 <?php
-	session_start();
+    session_start();
+    require '/var/www/maaatch.com/htdocs/common/common.php';
+    require '/var/www/maaatch.com/htdocs/common/utility.php';
+	require '/var/www/maaatch.com/db_auth.php';
+    
+    login_redir('/login/', true);
 ?>
-
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Maaatch&nbsp;&nbsp;|&nbsp;&nbsp;Order Form</title>
-		<?php require '/var/www/maaatch.com/htdocs/common/common.php'; ?>
+		<title>Maaatch&nbsp;&nbsp;|&nbsp;&nbsp;Orders</title>
 		<?php head_tags(); ?>
 	</head>
 	<body>
-		<?php navbar("Order Form", 0); ?>
+		<?php navbar("Orders", 0); ?>
 		<main class="container">
-			<form action="order.php" method="post">
-				<h2 class="form-inline-heading">Goat Order Form</h2>
-				<div class="form-group row">
-					<label for="name" class="col-sm-2 form-control-label">Name:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="Name" placeholder="First and Last Name">
-					</div>
-				</div>
-				<div class="form-group row">
-					<label for="goat" class="col-sm-2 form-control-label">Goat Name:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="goatName" placeholder="First and Last Name">
-					</div>
-				</div>
-				<div class="form-group row">
-					<label for="email" class="col-sm-2 form-control-label">Email:</label>
-					<div class="col-sm-10">
-						<input type="email" class="form-control" id="email" placeholder="username@example.com">
-					</div>
-				</div>
-				<div class="form-group row">
-					<label for="date" class="col-sm-2 form-control-label">Date:</label>
-					<div class="col-sm-10">
-						<input type="datetime-local" class="form-control" id="date">
-					</div>
-				</div>
-				<div class="form-group row">
-					<label for="shipping" class="col-sm-2 form-control-label">Shipping Method:</label>
-					<div class="col-sm-10">
-						<select class="form-control" id="shipping">
-							<option value="standard">Standard</option>
-							<option value="priority">Priority</option>
-							<option value="overnight">Overnight</option>
-						</select>
-					</div>
-				</div>
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Confirm Order</button>
-			</form>
+            <h1><?php echo $_SESSION['name'] .'\'s Orders'; ?></h1>
+            <table class="table table-hover">
+                <tr>
+					<th>Order ID</th>
+                    <th>Date</th>
+                    <th>Goat Name</th>
+					<th>Shipping Speed</th>
+                    <th>Shipping Address</th>
+                <tr>
+                <?php 
+                    $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
+                    $stmt = $db->prepare('SELECT orders.order_id AS id, orders.date AS date,
+					                      orders.speed AS speed, orders.address AS address,
+										  goats.name AS goat
+                                          FROM orders
+                                          LEFT JOIN goats
+                                          ON orders.goat = goats.goat_id
+                                          WHERE orders.user = ?
+                                          ORDER BY date;
+                                          ');
+                    echo $db->error;
+                    $stmt->bind_param('i', $_SESSION['user_id']);
+                    $stmt->execute();
+                    $res = $stmt->get_result();
+
+                    while($order = $res->fetch_assoc()) {
+                        echo '<tr>';
+                            echo '<td>' . $order['id'] . '</td>';
+                            echo '<td>' . $order['date'] . '</td>';
+                            echo '<td>' . $order['goat'] . '</td>';
+                            echo '<td>' . $order['shipping'] . '</td>';
+                            echo '<td>$' . $order['address'] . '</td>';
+                        echo '</tr>';
+                    }
+                ?>
+            </table>
 		</main>
 		<?php bootstrap_js(); ?>
 	</body>
