@@ -16,7 +16,7 @@
 		<?php navbar("Orders", 0); ?>
 		<main class="container">
             <h1><?php echo $_SESSION['name'] .'\'s Orders'; ?></h1>
-            <table class="table table-hover">
+            <table class="table">
                 <tr>
 					<th>Order ID</th>
                     <th>Date</th>
@@ -26,14 +26,13 @@
                 <tr>
                 <?php 
                     $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
-                    $stmt = $db->prepare('SELECT orders.order_id AS id, orders.date AS date,
+                    $stmt = $db->prepare('SELECT orders.order_id AS id, DATE(orders.date) AS date,
 					                      orders.speed AS speed, orders.address AS address,
 										  goats.name AS goat
-                                          FROM orders
-                                          LEFT JOIN goats
+                                          FROM orders LEFT JOIN goats
                                           ON orders.goat = goats.goat_id
                                           WHERE orders.user = ?
-                                          ORDER BY date;
+                                          ORDER BY date DESC;
                                           ');
                     echo $db->error;
                     $stmt->bind_param('i', $_SESSION['user_id']);
@@ -45,8 +44,8 @@
                             echo '<td>' . $order['id'] . '</td>';
                             echo '<td>' . $order['date'] . '</td>';
                             echo '<td>' . $order['goat'] . '</td>';
-                            echo '<td>' . $order['shipping'] . '</td>';
-                            echo '<td>$' . $order['address'] . '</td>';
+                            echo '<td>' . ucfirst($order['speed']) . '</td>';
+                            echo '<td>' . $order['address'] . '</td>';
                         echo '</tr>';
                     }
                 ?>
