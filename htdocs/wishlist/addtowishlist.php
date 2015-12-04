@@ -11,6 +11,5 @@
 		$gstmt->bind_param('is', $_SESSION['user_id'], $_GET['g']);
 		$gstmt->execute();
 		header('Location: /wishlist/');
-		die();
 	}
 ?>
