@@ -38,6 +38,7 @@ echo '	<div id="navbar" class="collapse navbar-collapse">
 ';
 				navelem("Home",   "/",      $active == 1);
 				navelem("Goats",  "/goats", $active == 2);
+				navelem("About",  "/about", $active == 3);
 echo '</ul>';
 
 // right side
@@ -45,11 +46,11 @@ echo '
 <ul class="nav navbar-nav navbar-right">
 	<li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-		' . ($_SESSION['login']?$_SESSION['name']:'Account') . '<span class="caret"></span></a>
+		' . ((isset($_SESSION['login']) && $_SESSION['login'])?$_SESSION['name']:'Account') . '<span class="caret"></span></a>
 			<ul class="dropdown-menu">
 ';
-				if($_SESSION['login']) {
-					navelem("Settings", "/account",    False);
+				if(isset($_SESSION['login']) && $_SESSION['login']) {
+					navelem("Settings", "/settings",    False);
 					navelem("Orders",   "/order?m=my", False);
 					navelem("Wishlist", "/wishlist",   False);
 					echo '<li role="separator" class="divider"></li>';

@@ -13,7 +13,7 @@
 		<script src="rvalidate.js"></script>
 	</head>
 	<body>
-		<?php navbar("Log In", 0); ?>
+		<?php navbar("Sign Up", 0); ?>
 		<main class="container">
 			<form class="form-signin" action="register.php" method="post">
 

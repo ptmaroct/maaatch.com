@@ -1,0 +1,28 @@
+body {
+    padding-top: 80px;
+}
+
+#searchbar {
+    max-width: 330px;
+    margin: 0 auto;
+}
+
+#results {
+    max-width: 330px;
+    margin: 20px auto;
+}
+
+tbody {
+    width: 100%;
+    display: table;
+}
+
+.imagetd {
+    width: 128px;
+}
+
+.media-object {
+    width: 96px;
+    height: 96px;
+}
+

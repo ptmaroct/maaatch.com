@@ -9,4 +9,10 @@
             die();
 		}
 	}
+    
+    function img_to_b64($imgpath) {
+        $image = file_get_contents($imgpath);
+        $type = pathinfo($imgpath, PATHINFO_EXTENSION);
+        return 'data:image/' . $type . ';base64,' . base64_encode($image);
+    }
 ?>

@@ -5,7 +5,7 @@
     $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
     
     // if user not specified, must be logged in
-    if($active_user = $_GET['user']) {
+    if(isset($_GET['user']) && $active_user = $_GET['user']) {
         $stmt = $db->prepare('SELECT CONCAT_WS(" ", name_first, name_last) AS name FROM users WHERE username = ?;');
         $stmt->bind_param('s', $active_user);
         $stmt->execute();
@@ -16,7 +16,7 @@
         $active_user = $_SESSION['username'];
         $active_name = $_SESSION['name'];
     }
-    $self = (!$_GET['user'] || $_GET['user'] == $_SESSION['username']);
+    $self = (!isset($_GET['user']) || !$_GET['user'] || $_GET['user'] == $_SESSION['username']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,6 +24,8 @@
 		<title>Maaatch&nbsp;&nbsp;|&nbsp;&nbsp;Wishlist</title>
 		<?php require '/var/www/maaatch.com/htdocs/common/common.php'; ?>
 		<?php head_tags(); ?>
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="wishlist.js"></script>
 	</head>
 	<body>
 		<?php navbar("Browse Goats", 2); ?>
@@ -47,7 +49,8 @@
                 <tr>
                 <?php // create wishlist for logged in user unless get variable 'uname' is set to username
                     $stmt = $db->prepare('SELECT goats.name AS name, goats.price AS price,
-                                          goats.gender AS gender, goats.age AS age
+                                          goats.gender AS gender, goats.age AS age,
+                                          goats.goat_id AS goat_id
                                           FROM users
                                           RIGHT JOIN wishlist
                                           ON users.user_id = wishlist.user
@@ -61,14 +64,16 @@
                     $res = $stmt->get_result();
 
                     while($goat = $res->fetch_assoc()) {
-                        echo '<tr>';
+                        echo '<tr data-goatid="' . $goat['goat_id'] . '">';
                         echo '<td>' . $goat['name'] . '</td>';
-                        echo '<td>' . $goat['gender'] . '</td>';
+                        echo '<td>' . ucfirst($goat['gender']) . '</td>';
                         echo '<td>' . $goat['age'] . '</td>';
                         echo '<td>$' . $goat['price'] . '</td>';
                         if($self) {
-                        echo '<td><button class="btn btn-danger btn-xs">
-                            Remove</button></td>';
+                        echo '<td><button class="removebutton btn btn-danger btn-xs">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </button>
+                            </td>';
                         }
                         echo '</tr>';
                     }

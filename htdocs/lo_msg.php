@@ -1,6 +1,3 @@
-<?php
-	session_start();
-?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,13 +6,15 @@
 		<?php head_tags(); ?>
 	</head>
 	<body>
-		<main class="container">
-			<article class="welcome-text">
-				<h1>You have been successfully logged out.</h1>
-				<p class="lead"><a href="/">Click here</a> to return
-				to the main site.</p>
-			</article>
-		</main>
+        <div class="jumbotron">
+            <main class="container">
+                <article class="welcome-text">
+                    <h1>You have been successfully logged out.</h1>
+                    <p class="lead"><a href="/">Click here</a> to return
+                    to the main site.</p>
+                </article>
+            </main>
+        </div>
 		<?php bootstrap_js(); ?>
 	</body>
 </html>

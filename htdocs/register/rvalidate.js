@@ -21,9 +21,9 @@ $(document).ready( function() {
 function usercheck() {
 	$.post('usercheck.php', { username: $(ufield).val() },
 		function(result) {
-			good = (result == '1');
+			goodun = (result == '1');
 			$(ufield).css('background-color',
-				$(ufield).val()?(good?'PaleGreen':'Pink'):'initial');
+				$(ufield).val()?(goodun?'PaleGreen':'Pink'):'initial');
 		});
 }
 
