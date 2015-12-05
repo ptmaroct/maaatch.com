@@ -8,12 +8,17 @@
 	$stmt->bind_param('ssssss', $_POST['FName'], $_POST['LName'], $_POST['gender'], $_POST['age'], $_POST['location'], $_SESSION['username']);
 	$stmt->execute();
 
-	$mydir = "sitedata/users/" . $_SESSION['user_id']; 
-	mkdir($mydir, 0755, true);
-//	$myfile = fopen("bio", "a") or die("Unable to open file"); 
+	foreach($_POST['goattributes'] as $goattrib) {
+		$stmt = $db->prepare('INSERT INTO user_goattributes (user, goattribute) VALUES (?,?)');
+		$stmt->bind_param('ii', $_SESSION['user_id'], $goattrib);
+		$stmt->execute();
+	}
+
+
+
+	$mydir = "/var/www/maaatch.com/sitedata/users/" . $_SESSION['user_id']; 
+	mkdir($mydir, 0777, true);
 	$txt = $_POST['bio'];
-	file_put_contents($mydir . "bio", $txt);
-//	fwrite($myfile2, $txt);
-//	fclose($myfile2);
+	file_put_contents($mydir . "/bio", $txt);
 	header("Location: /settings/");
 ?>

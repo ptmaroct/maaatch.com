@@ -7,12 +7,6 @@ Searches
 
 Editors
     user settings
-        - bio saving
         - preferences saving
         - goattributes
         - image upload
-
-Extra
-    disable add to wishlist button if already in wishlist
-    add goattributes to goats
-    add profile pics to goats

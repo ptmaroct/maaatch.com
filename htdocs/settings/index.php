@@ -57,17 +57,52 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="preferences" class="col-xs-2 form-control-label">Preferences:</label>
+					<label for="bio" class="col-xs-2 form-control-label">Bio:</label>
 					<div class="col-xs-10">
-						<input type="textarea" class="form-control" id="Preferences" placeholder="What are you looking for in a goat?">
+						<input type="textarea" class="form-control" id="bio" name="bio" 
+						placeholder="Give a brief description of yourself." 
+						value="<?php echo file_get_contents("/var/www/maaatch.com/sitedata/users/" . $user['user_id'] . "/bio"); ?>">
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="bio" class="col-xs-2 form-control-label">Bio:</label>
+					<label for="goattributes" class="col-xs-2 form-control-label">Goattributes:</label>
 					<div class="col-xs-10">
-						<input type="textarea" class="form-control" id="bio" name="bio" placeholder="Give a brief description of yourself.">
+						<label class="checkbox-inline"><input type="checkbox"  
+							id="goattributes" name="goattributes[]" value="1">Foodie</label>
+						<label class="checkbox-inline"><input type="checkbox"  
+							id="goattributes" name="goattributes[]" value="2">Night Owl</label>
+						<label class="checkbox-inline"><input type="checkbox"  
+							id="goattributes" name="goattributes[]" value="3">Early Bird</label>
+						<label class="checkbox-inline"><input type="checkbox"  
+							id="goattributes" name="goattributes[]" value="4">Athletic</label>
+						<label class="checkbox-inline"><input type="checkbox"  
+							id="goattributes" name="goattributes[]" value="5">Coach Potato</label>
+						<label class="checkbox-inline"><input type="checkbox"  
+							id="goattributes" name="goattributes[]" value="6">Intellectual</label>
+						<label class="checkbox-inline"><input type="checkbox"  
+							id="goattributes" name="goattributes[]" value="7">Traveler</label>
+						<label class="checkbox-inline"><input type="checkbox"  
+							id="goattributes" name="goattributes[]" value="8">Workaholic</label>
+						<label class="checkbox-inline"><input type="checkbox"  
+							id="goattributes" name="goattributes[]" value="9">Shopaholic</label>
+						<label class="checkbox-inline"><input type="checkbox"  
+							id="goattributes" name="goattributes[]" value="10">Introvert</label>
+						<label class="checkbox-inline"><input type="checkbox"  
+							id="goattributes" name="goattributes[]" value="11">Extrovert</label>
+						<label class="checkbox-inline"><input type="checkbox"  
+							id="goattributes" name="goattributes[]" value="12">Intuitive</label>
+						<label class="checkbox-inline"><input type="checkbox"  
+							id="goattributes" name="goattributes[]" value="13">Sensitive</label>
+						<label class="checkbox-inline"><input type="checkbox"  
+							id="goattributes" name="goattributes[]" value="14">Thoughtful</label>
+						<label class="checkbox-inline"><input type="checkbox"  
+							id="goattributes" name="goattributes[]" value="15">Perceptive</label>
+						<label class="checkbox-inline"><input type="checkbox"  
+							id="goattributes" name="goattributes[]" value="16">Listener</label>
 					</div>
-				</div><br/>
+				</div>
+
+				<br/>
 				<button class="btn btn-lg btn-primary text-center" type="submit">Save Profile Edits</button>
 			</form>
 		</main>

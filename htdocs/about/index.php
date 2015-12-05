@@ -11,7 +11,7 @@
 		<?php head_tags(); ?>
 	</head>
 	<body>
-		<?php navbar("About Maaatch", 3); ?>
+		<?php navbar("About Maaatch", 4); ?>
 		<main class="container">
 		<h1><i><b>Our goal is your happiness</b></i></h1>
 		<section id="description">
