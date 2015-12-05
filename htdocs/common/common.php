@@ -38,9 +38,9 @@ echo '  <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
 ';
                 navelem("Home",   "/",      $active == 1);
-                navelem("Goats",  "/goats", $active == 2);
-                navelem("Users",  "/wishlist/usersearch.php", $active == 3);
-                navelem("About Us",  "/about", $active == 4);
+                navelem("Goats",  "/goats/", $active == 2);
+                navelem("Users",  "/usersearch/", $active == 3);
+                navelem("About Us",  "/about/", $active == 4);
 echo '</ul>';
 
 // right side

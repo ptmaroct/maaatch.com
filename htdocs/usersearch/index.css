@@ -1,0 +1,21 @@
+body {
+    padding-top: 80px;
+}
+
+#searchbar {
+    max-width: 330px;
+    margin: 0 auto;
+}
+
+#results {
+    max-width: 330px;
+    margin: 20px auto;
+}
+
+.media {
+    margin-top: 30px;
+}
+
+.username {
+    padding-left: 20px;
+}

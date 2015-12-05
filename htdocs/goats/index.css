@@ -28,4 +28,19 @@ tbody {
 
 #goatpic {
 	border-radius: 50px;
+    margin: 30px;
+    max-height: 256px;
+    max-width: 256px;
+}
+
+#profbody {
+    max-width: 600px;
+}
+
+#tags {
+    margin: 10px;
+}
+
+#tags button {
+margin: 5px;
 }
