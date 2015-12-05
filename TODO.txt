@@ -1,18 +1,18 @@
 TODO:
 
 Searches
-	Goat matcher
-	User wishlists (Andy)
-
-Viewers
-	goat profile (Jesse)
-	orders
+    Goat matcher
+        - error message if user has no goattributes
+    user wishlist search
 
 Editors
-	user settings
-	goat profile (admin)
-	order form
+    user settings
+        - bio saving
+        - preferences saving
+        - goattributes
+        - image upload
 
 Extra
-	set order form goat name to red if non-existent
-	set add to wishlist button to red if already in wishlist
+    disable add to wishlist button if already in wishlist
+    add goattributes to goats
+    add profile pics to goats

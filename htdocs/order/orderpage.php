@@ -30,28 +30,23 @@
 	<head>
 		<title>Maaatch&nbsp;&nbsp;|&nbsp;&nbsp;Order Form</title>
 		<?php head_tags(); ?>
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="gvalidate.js"></script>
 	</head>
 	<body>
 		<?php navbar("Order Form", 0); ?>
 		<main class="container">
-			<form action="order.php?n=<?php echo $_GET['g']; ?>" method="post">
+			<form action="order.php" method="post">
 				<h2 class="form-inline-heading">Goat Order Form</h2> <br/>
-				<div class="form-group row">
-					<label for="name" class="col-sm-2 form-control-label">Name:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="Name" value="<?php echo $user['name_first'] . ' ' . $user['name_last']; ?>">
-					</div>
-				</div>
-				<div class="form-group row">
+                <div class="form-group row">
 					<label for="goat" class="col-sm-2 form-control-label">Goat Name:</label>
 					<div class="col-sm-10">
 						<?php
-                            echo '<input type="text" class="form-control" name="goatName"';
+                            echo '<input type="text" class="form-control" name="goatName" ';
 							if(isset($_GET['g'])) {
-								echo 'value="' . $goat['name'] . '">';
-							}else { 
-							echo 'placeholder="First and Last Name">';
-							}
+								echo 'value="' . $goat['name'] . '" ';
+							} 
+                            echo 'placeholder="First and Last Name" required>';
 						?>
 					</div>
 				</div>
@@ -59,12 +54,6 @@
 					<label for="email" class="col-sm-2 form-control-label">Email:</label>
 					<div class="col-sm-10">
 						<input type="email" class="form-control" id="email" placeholder="username@example.com">
-					</div>
-				</div>
-				<div class="form-group row">
-					<label for="date" class="col-sm-2 form-control-label">Date:</label>
-					<div class="col-sm-10">
-						<input type="date" class="form-control" name="date">
 					</div>
 				</div>
 				<div class="form-group row">
@@ -81,28 +70,28 @@
 				<div class="form-group row">
 					<label for="address" class="col-sm-2 form-control-label">Address:</label>
 					<div class="col-sm-10">
-						<input type="address" class="form-control" name="address" placeholder="Enter address here">
+						<input type="address" class="form-control" name="address" placeholder="Enter address here" required>
 					</div>
 				</div>
 				
 				<div class="form-group row">
 					<label for="city" class="col-sm-2 form-control-label">City:</label>
 					<div class="col-sm-10">
-						<input type="city" class="form-control" name="city" placeholder="Enter city here">
+						<input type="city" class="form-control" name="city" placeholder="Enter city here" required>
 					</div>
 				</div>
 				
 				<div class="form-group row">
 					<label for="state" class="col-sm-2 form-control-label">State:</label>
 					<div class="col-sm-10">
-						<input type="state" class="form-control" name="state" placeholder="Enter state here">
+						<input type="state" class="form-control" name="state" placeholder="Enter state here" required>
 					</div>
 				</div>
 				
 				<div class="form-group row">
 					<label for="zip" class="col-sm-2 form-control-label">Zip:</label>
 					<div class="col-sm-10">
-						<input type="zip" class="form-control" name="zip" placeholder="Enter zip code here">
+						<input type="zip" class="form-control" name="zip" placeholder="Enter zip code here" required>
 					</div>
 				</div>
 				

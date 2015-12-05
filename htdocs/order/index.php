@@ -15,7 +15,7 @@
 	<body>
 		<?php navbar("Orders", 0); ?>
 		<main class="container">
-            <h1><?php echo $_SESSION['name'] .'\'s Orders'; ?></h1>
+            <h1><?php echo $_SESSION['name'] .'\'s Orders'; ?></h1><br/>
             <table class="table">
                 <tr>
 					<th>Order ID</th>
@@ -45,7 +45,7 @@
                             echo '<td>' . $order['date'] . '</td>';
                             echo '<td>' . $order['goat'] . '</td>';
                             echo '<td>' . ucfirst($order['speed']) . '</td>';
-                            echo '<td>' . $order['address'] . '</td>';
+                            echo '<td><pre>' . $order['address'] . '</pre></td>';
                         echo '</tr>';
                     }
                 ?>

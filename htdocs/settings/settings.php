@@ -8,12 +8,12 @@
 	$stmt->bind_param('ssssss', $_POST['FName'], $_POST['LName'], $_POST['gender'], $_POST['age'], $_POST['location'], $_SESSION['username']);
 	$stmt->execute();
 
-//	$mydir = "sitedata/users/" . $_SESSION['user_id']; 
-//	mkdir($mydir, 0755, true);
-	$goatfile = file_get_contents("../../sitedata/goats/goat7/bio") or die("php sucks");
-//	$myfile = fopen("bio", "w") or die("Unable to open file"); 
-//	$txt = $_POST['bio'];
-//	fwrite($myfile, $txt);
-//	fclose($myfile);
+	$mydir = "sitedata/users/" . $_SESSION['user_id']; 
+	mkdir($mydir, 0755, true);
+//	$myfile = fopen("bio", "a") or die("Unable to open file"); 
+	$txt = $_POST['bio'];
+	file_put_contents($mydir . "bio", $txt);
+//	fwrite($myfile2, $txt);
+//	fclose($myfile2);
 	header("Location: /settings/");
 ?>

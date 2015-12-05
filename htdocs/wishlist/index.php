@@ -45,7 +45,7 @@
                     <th>Gender</th>
                     <th>Age</th>
                     <th>Price</th>
-                    <?php if($self) { echo '<th></th>'; } ?>
+                    <?php if($self) { echo '<th></th><th></th>'; } ?>
                 <tr>
                 <?php // create wishlist for logged in user unless get variable 'uname' is set to username
                     $stmt = $db->prepare('SELECT goats.name AS name, goats.price AS price,
@@ -70,10 +70,18 @@
                         echo '<td>' . $goat['age'] . '</td>';
                         echo '<td>$' . $goat['price'] . '</td>';
                         if($self) {
-                        echo '<td><button class="removebutton btn btn-danger btn-xs">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        echo '
+                            <td>
+                                <a class="btn btn-xs btn-primary"
+                                    href="/order/orderpage.php?g=' . $goat['goat_id'] . '">
+                                    Order
+                                </a>
+                            </td>
+                            <td><button class="removebutton btn btn-danger btn-xs">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                 </button>
-                            </td>';
+                            </td>
+                        ';
                         }
                         echo '</tr>';
                     }
@@ -83,7 +91,7 @@
                 <?php // if on own wish list, put 'save' button to update database
                         // button creates hidden form like http://bit.ly/1TlLVXm  
                     if($self) {
-                        echo '<button class="btn btn-lg btn-primary" id="submit">Save</button>';
+                        echo '<button class="btn btn-lg btn-primary hidden" id="submit">Save</button>';
                     }
                 ?>
             </div>

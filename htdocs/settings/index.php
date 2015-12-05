@@ -15,14 +15,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Maaatch&nbsp;&nbsp;|&nbsp;&nbsp;User Settings</title>
+		<title>Maaatch&nbsp;&nbsp;|&nbsp;&nbsp;Your Profile</title>
 		<?php head_tags(); ?>
 	</head>
 	<body>
-		<?php navbar("User Settings", 0); ?>
+		<?php navbar("Your Profile", 0); ?>
 		<main class="container">
 			<form action="settings.php" method="post">
-				<h2 class="form-inline-heading">User Settings</h2>
+				<h2 class="form-inline-heading">Your Profile</h2><br/>
 				<div class="form-group row">
 					<label for="name_first" class="col-xs-2 form-control-label">First Name:</label>
 					<div class="col-xs-10">
@@ -67,8 +67,8 @@
 					<div class="col-xs-10">
 						<input type="textarea" class="form-control" id="bio" name="bio" placeholder="Give a brief description of yourself.">
 					</div>
-				</div>
-				<button class="btn btn-lg btn-primary text-center" type="submit">Save Settings</button>
+				</div><br/>
+				<button class="btn btn-lg btn-primary text-center" type="submit">Save Profile Edits</button>
 			</form>
 		</main>
 		<?php bootstrap_js(); ?>

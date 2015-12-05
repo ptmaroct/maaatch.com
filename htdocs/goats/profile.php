@@ -27,7 +27,8 @@
 			<div class="row">
 				<?php
 					$profile_pic = '/var/www/maaatch.com/sitedata/goats/goat' . $goat['goat_id'] . '/profile.jpg';
-					echo '<img class="col-xs-4 img-responsive img-rounded" src="';
+					$bio = file_get_contents('/var/www/maaatch.com/sitedata/goats/goat' . $goat['goat_id'] . '/bio');
+					echo '<img class="col-xs-4 img-responsive" id="goatpic" src="';
 					if(file_exists($profile_pic)) {
 						echo img_to_b64($profile_pic);
 					} else {
@@ -36,11 +37,12 @@
 					echo '" alt="profile_pic"/>';
 					echo '<h1 class="page-header" class="col-xs-8">' . $goat['name'] . '</h1>';
 					echo '<p class="col-xs-8">';
-                    echo ucfirst($goat['gender']) . '<br/>';
-                    echo 'Age: ' . $goat['age'] . '<br/>';
-					echo 'Price: $' . $goat['price'] . '<br/><br/>';
+                    echo '<i>' . ucfirst($goat['gender']) . '</i><br/>';
+                    echo '<b>Age:</b> ' . $goat['age'] . '<br/>';
+					echo '<b>Price:</b> $' . $goat['price'] . '<br/><br/>';
 					echo '<a class="btn btn-lg btn-primary" href="/order/orderpage.php?g=' . $goat['goat_id'] . '" role="button">Click to Order</a><br/><br/>';
-					echo '<a class="btn btn-lg btn-primary" href="/wishlist/addtowishlist.php?g=' . $goat['goat_id'] . '" role="button">Add to Wishlist</a><br/></p>';
+					echo '<a class="btn btn-lg btn-primary" href="/wishlist/addtowishlist.php?g=' . $goat['goat_id'] . '" role="button">Add to Wishlist</a><br/>';
+					echo '<br/><br/>' . $bio . '</p>';
 				?>
 			</div>
 		</main>
