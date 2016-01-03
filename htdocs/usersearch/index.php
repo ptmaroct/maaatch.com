@@ -11,7 +11,7 @@
         <script src="usersearch.js"></script>
 	</head>
 	<body>
-		<?php navbar("Search Goats", 2); ?>
+		<?php navbar("Search Users", 3); ?>
 		<main class="container">
             <!-- search bar with ajax call to database -->
             <input type=text class="form-control" id="searchbar" placeholder="Search" autofocus>
