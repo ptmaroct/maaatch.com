@@ -1,5 +1,4 @@
 <?php
-	//NOTE PAGE IS NOT FINISHED (COPY OF orderpage.php to become reviewgoat.php)
 	session_start();
     require '/var/www/maaatch.com/htdocs/common/common.php';
     require '/var/www/maaatch.com/db_auth.php';
@@ -20,7 +19,6 @@
 		<title>Maaatch&nbsp;&nbsp;|&nbsp;&nbsp;Review Form</title>
 		<?php head_tags(); ?>
 		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script src="gvalidate.js"></script>
 	</head>
 	<body>
 		<?php navbar("Review Goat", 0); ?>

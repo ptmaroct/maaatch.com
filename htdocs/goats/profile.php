@@ -5,7 +5,7 @@
 	require '/var/www/maaatch.com/htdocs/common/utility.php';
 
     $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
-    $stmt = $db->prepare('SELECT goat_id, price, name, age, gender FROM goats WHERE goat_id = ?;');
+    $stmt = $db->prepare('SELECT goat_id, price, name, goats.age, goats.gender, users.username as selleruname, CONCAT(users.name_first, " ", users.name_last) AS sellername FROM goats LEFT JOIN users ON goats.seller = users.user_id WHERE goat_id = ?;');
     $stmt->bind_param('s', $_GET['p']);
     $stmt->execute();
     $res = $stmt->get_result();
@@ -73,8 +73,11 @@
 					echo '<h1 class="page-header">' . $goat['name'] . '</h1>';
                     echo '<i>' . ucfirst($goat['gender']) . '</i><br/>';
                     echo '<b>Age:</b> ' . $goat['age'] . '<br/>';
-					echo '<b>Price:</b> $' . $goat['price'] . '<br/><br/>';
-					echo '<a class="btn btn-md btn-primary" href="/order/orderpage.php?g=' . $goat['goat_id'] . '" role="button">Click to Order</a>';
+					echo '<b>Price:</b> $' . $goat['price'] . '<br/>';
+                    if($goat['sellername']) {
+                        echo '<b>Seller:</b> <a href="/wishlist/?user=' . $goat['selleruname'] . '">' . $goat['sellername'] . '</a><br/>';
+                    }
+					echo '<br/><a class="btn btn-md btn-primary" href="/order/orderpage.php?g=' . $goat['goat_id'] . '" role="button">Click to Order</a>';
 					echo ' ';//to create space between the inline order and wishlist buttons
 					echo '<a class="btn btn-md btn-primary" href="/wishlist/addtowishlist.php?g=' . $goat['goat_id'] . '" role="button">Add to Wishlist</a><br/>';
 					echo '<br/>' . $bio;
