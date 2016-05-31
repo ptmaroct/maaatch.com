@@ -58,18 +58,18 @@
 	<body>
 		<?php navbar($goat['name'], 2); ?>
 		<main class="container">
-			<div class="">
+			<div class="row">
 				<?php
 					$profile_pic = '/var/www/maaatch.com/sitedata/goats/goat' . $goat['goat_id'] . '/profile.jpg';
 					$bio = file_get_contents('/var/www/maaatch.com/sitedata/goats/goat' . $goat['goat_id'] . '/bio');
-					echo '<img class="img-responsive pull-left" id="goatpic" src="';
+					echo '<img class="img-responsive col-sm-5" id="goatpic" src="';
 					if(file_exists($profile_pic)) {
 						echo img_to_b64($profile_pic);
 					} else {
 						echo '/images/generic_gprofile.jpg'; 
 					}	    
 					echo '" alt="profile_pic"/>';
-					echo '<div class="" id="profbody">';
+					echo '<div class="col-sm-7" id="profbody">';
 					echo '<h1 class="page-header">' . $goat['name'] . '</h1>';
                     echo '<i>' . ucfirst($goat['gender']) . '</i><br/>';
                     echo '<b>Age:</b> ' . $goat['age'] . '<br/>';
