@@ -50,7 +50,7 @@
 					<label for="gender" class="col-xs-2 form-control-label">Gender:</label>
 					<div class="col-xs-10">
 						<select id="gender" name="gender" >
-							<option <?php if($user['gender'] == "NULL") echo "selected"; ?> value="NULL"> </option>
+							<option <?php if($user['gender'] == "NULL") echo "selected"; ?> value="NULL">Select...</option>
 							<option <?php if($user['gender'] == "male") echo "selected"; ?> value="male">Male</option>
 							<option <?php if($user['gender'] == "female") echo "selected"; ?> value="female">Female</option>
 						</select>
