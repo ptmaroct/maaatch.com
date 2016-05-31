@@ -29,6 +29,25 @@
     while($x = $res->fetch_assoc()) {
         array_push($gattr, $x['goattribute']);
     }
+	
+	//get information from reviews
+	$stmt = $db->prepare('SELECT DISTINCT U.name_first, U.name_last, R.stars, R.content
+						   FROM goats G, users U, reviews R
+						   WHERE R.goat = ? AND R.user = U.user_id');
+	$stmt->bind_param('s', $_GET['p']);
+	$stmt->execute();
+	$review = $stmt->get_result();
+	
+	//get user ids of users that have already reviewed said goat
+	$stmt = $db->prepare('SELECT DISTINCT user FROM reviews WHERE goat = ?;');
+	$stmt->bind_param('i', $_GET['p']);
+	$stmt->execute();
+	$res = $stmt->get_result();
+	$row_count = $res->num_rows; 
+	$user_ids = array();
+	while($y = $res->fetch_assoc()) {
+		array_push($user_ids, $y['user']);
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,19 +69,71 @@
 						echo '/images/generic_gprofile.jpg'; 
 					}	    
 					echo '" alt="profile_pic"/>';
-					echo '<div class="pull-left" id="profbody">';
+					echo '<div class="" id="profbody">';
 					echo '<h1 class="page-header">' . $goat['name'] . '</h1>';
                     echo '<i>' . ucfirst($goat['gender']) . '</i><br/>';
                     echo '<b>Age:</b> ' . $goat['age'] . '<br/>';
 					echo '<b>Price:</b> $' . $goat['price'] . '<br/><br/>';
-					echo '<a class="btn btn-lg btn-primary" href="/order/orderpage.php?g=' . $goat['goat_id'] . '" role="button">Click to Order</a><br/><br/>';
-					echo '<a class="btn btn-lg btn-primary" href="/wishlist/addtowishlist.php?g=' . $goat['goat_id'] . '" role="button">Add to Wishlist</a><br/>';
-					echo '<br/><br/>' . $bio;
+					echo '<a class="btn btn-md btn-primary" href="/order/orderpage.php?g=' . $goat['goat_id'] . '" role="button">Click to Order</a>';
+					echo ' ';//to create space between the inline order and wishlist buttons
+					echo '<a class="btn btn-md btn-primary" href="/wishlist/addtowishlist.php?g=' . $goat['goat_id'] . '" role="button">Add to Wishlist</a><br/>';
+					echo '<br/>' . $bio;
                     echo '<div id="tags">';
                         foreach($gattr as $g) {
-                            echo '<button class="btn">' . $g . '</button>';
+                            echo '<button class="btn btn-sm">' . $g . '</button>';
                         }
                     echo '</div>';
+					echo '<section>';
+					echo '<h3>Reviews:</h3>';
+					//for each review
+					
+					if($review->num_rows > 0) {
+						//output content
+						while($row = $review->fetch_assoc()) {
+							echo '<div class="panel panel-primary">';
+							echo '<div class="panel panel-heading">';
+							echo $row['name_first'] . ' ' . $row['name_last'];
+							echo '<span class="starwrapper">';
+							$counter = 0;
+							$remainder = 5 - $row['stars'];
+							for($counter; $counter < $row['stars']; $counter++) {
+								echo '<img src="/images/full_star.png" alt="star" style="width:20px;height:20px">';
+							}
+							$counter = 0;
+							for($counter; $counter < $remainder; $counter++) {
+								echo '<img src="/images/white_star.png" alt="star" style="width:20px;height:20px">';
+							}
+								echo '</span>';
+							echo '</div>';
+							//print review content
+                            if(!empty($row['content'])) {
+                                echo '<div class="panel panel-body" style="padding-top:1px;padding-bottom:1px">' . $row['content'] . '</div>';
+                            }
+                            echo '</div>';
+						}
+					}
+					//review button if no reviews on this goat already
+					if(isset($_SESSION['user_id'])) {
+						$id = $_SESSION['user_id'];
+						$c = 0;
+                        foreach($user_ids as $u) {
+							if($u == $id) { //if the user has already reviewed print thank you
+								echo '<div class="panel text-center">Thank you for reviewing this goat!</div>';
+							} else {
+								$c++;
+							}
+                        }
+                        if ($c == $row_count || $row_count == 0) { //if the user has not reviewed display review button or no reviews
+                            echo '<form action="reviewgoat.php?p=' . $_GET['p'] . '" method="POST">';
+                            echo '<button class="btn btn-lg btn-primary center-block" type="submit">Leave a review for this goat</button>';
+                            echo '</form>';
+                        }
+					} else { //if user is not logged in, display button which will redirect to login upon click
+						echo '<form action="reviewgoat.php?p=' . $_GET['p'] . '" method="POST">';
+						echo '<button class="btn btn-lg btn-primary center-block" type="submit">Leave a review for this goat</button>';
+						echo '</form>';
+					}
+                    echo '</section>';
                     echo '</div>';
 				?>
 			</div>

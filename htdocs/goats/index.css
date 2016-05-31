@@ -35,6 +35,8 @@ tbody {
 
 #profbody {
     max-width: 600px;
+    margin: auto;
+    padding-bottom: 2rem;
 }
 
 #tags {
@@ -43,4 +45,8 @@ tbody {
 
 #tags button {
 margin: 5px;
+}
+
+.starwrapper {
+    margin-left: 3em;
 }
