@@ -41,6 +41,7 @@ echo '  <div id="navbar" class="collapse navbar-collapse">
                 navelem("Goats",  "/goats/", $active == 2);
                 navelem("Users",  "/usersearch/", $active == 3);
                 navelem("About Us",  "/about/", $active == 4);
+                navelem("Help",  "/help/", $active == 5);
 echo '</ul>';
 
 // right side
@@ -55,6 +56,7 @@ echo '
                     navelem("My Profile", "/settings/",    False);
                     navelem("My Orders",   "/order/", False);
                     navelem("My Wishlist", "/wishlist/",   False);
+                    navelem("Sell a Goat", "/post/",   False);
                     echo '<li role="separator" class="divider"></li>';
                     navelem("Log out",  "/login/logout.php",           False);
                 }
