@@ -3,18 +3,21 @@
     require '/var/www/maaatch.com/htdocs/common/common.php';
     require '/var/www/maaatch.com/db_auth.php';
 	require '/var/www/maaatch.com/htdocs/common/utility.php';
-
+    
+    // fetch goat's info and place into array
     $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
     $stmt = $db->prepare('SELECT goat_id, price, name, goats.age, goats.gender, users.username as selleruname, CONCAT(users.name_first, " ", users.name_last) AS sellername FROM goats LEFT JOIN users ON goats.seller = users.user_id WHERE goat_id = ?;');
     $stmt->bind_param('s', $_GET['p']);
     $stmt->execute();
     $res = $stmt->get_result();
     if(!$res->num_rows) {
+        // if goat doesn't exist, go to main goat page
         header('Location: /goats/');
         die();
     }
     $goat = $res->fetch_assoc();
     
+    // select goat's goattributes and store in array
     $stmt = $db->prepare('SELECT goattributes.name AS goattribute FROM goats
                           RIGHT JOIN goat_goattributes
                           ON goats.goat_id = goat_goattributes.goat
@@ -60,6 +63,7 @@
 		<main class="container">
 			<div class="row">
 				<?php
+                    // bring in goat's main data
 					$profile_pic = '/var/www/maaatch.com/sitedata/goats/goat' . $goat['goat_id'] . '/profile.jpg';
 					$bio = file_get_contents('/var/www/maaatch.com/sitedata/goats/goat' . $goat['goat_id'] . '/bio');
 					echo '<img class="img-responsive col-sm-5" id="goatpic" src="';

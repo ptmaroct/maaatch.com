@@ -18,7 +18,12 @@
 			<h5>
 			To get you started, we at Maaatch.com wanted to give you an overview 
 			of how you may use our website, along with the different services and
-			features our website provides.			
+			features our website provides. Note that the majority of the pages found
+			on the left of the navigation bar are available to both guests and users,
+			while most of the functions made available only to users who have created 
+			an account will be found in the dropdown menu on the right of the navigation
+			bar after logging into your account. These features can be categorized as 
+			such:			
 			</h5>
 		</div>
 		<div class="container col-md-6">

@@ -24,7 +24,8 @@
 					<th>Shipping Speed</th>
                     <th>Shipping Address</th>
                 <tr>
-                <?php 
+                <?php
+                    // get all orders made by user
                     $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
                     $stmt = $db->prepare('SELECT orders.order_id AS id, DATE(orders.date) AS date,
 					                      orders.speed AS speed, orders.address AS address,
@@ -39,6 +40,7 @@
                     $stmt->execute();
                     $res = $stmt->get_result();
 
+                    // print one row per order
                     while($order = $res->fetch_assoc()) {
                         echo '<tr>';
                             echo '<td>' . $order['id'] . '</td>';

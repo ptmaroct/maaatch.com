@@ -62,7 +62,8 @@
                     $stmt->bind_param('s', $active_user);
                     $stmt->execute();
                     $res = $stmt->get_result();
-
+                    
+                    // make row for each goat in wishlist
                     while($goat = $res->fetch_assoc()) {
                         echo '<tr data-goatid="' . $goat['goat_id'] . '">';
                         echo '<td>' . $goat['name'] . '</td>';

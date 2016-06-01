@@ -3,7 +3,8 @@
     require '/var/www/maaatch.com/htdocs/common/common.php';
     require '/var/www/maaatch.com/db_auth.php';
 	require '/var/www/maaatch.com/htdocs/common/utility.php';
-
+    
+    // get user data for current user
     $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
     $stmt = $db->prepare('SELECT * FROM users WHERE user_id = ?;');
     $stmt->bind_param('s', $_SESSION['user_id']);
@@ -11,6 +12,7 @@
     $res = $stmt->get_result();
     $user = $res->fetch_assoc();
 
+    // get user tags
 	$stmt = $db->prepare('SELECT goattribute FROM user_goattributes WHERE user = ?;');
     $stmt->bind_param('s', $_SESSION['user_id']);
     $stmt->execute();
@@ -26,14 +28,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Maaatch&nbsp;&nbsp;|&nbsp;&nbsp;Your Profile</title>
+		<title>Maaatch&nbsp;&nbsp;|&nbsp;&nbsp;My Profile</title>
 		<?php head_tags(); ?>
 	</head>
 	<body>
-		<?php navbar("Your Profile", 0); ?>
+		<?php navbar("My Profile", 0); ?>
 		<main class="container">
 			<form action="settings.php" method="post">
-				<h2 class="form-inline-heading">Your Profile</h2><br/>
+				<h2 class="form-inline-heading">My Profile</h2><br/>
 				<div class="form-group row">
 					<label for="name_first" class="col-xs-2 form-control-label">First Name:</label>
 					<div class="col-xs-10">

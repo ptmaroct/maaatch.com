@@ -2,6 +2,7 @@
 	require('/var/www/maaatch.com/db_auth.php');
 	require('/var/www/maaatch.com/htdocs/common/utility.php');
 	
+    // query goats from database
     $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
     $stmt = $db->prepare('SELECT goat_id, name, age, gender FROM goats WHERE name LIKE ?;');
     $match = '%' . $_GET['q'] . '%';
@@ -9,6 +10,7 @@
     $stmt->execute();
     $res = $stmt->get_result();
     
+    // for each goat, make an entry
     while($goat = $res->fetch_assoc()) {
         $profile_url = '/goats/profile.php?p=' . $goat['goat_id'];
         echo '<div class="media">';

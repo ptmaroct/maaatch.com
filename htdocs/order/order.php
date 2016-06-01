@@ -4,12 +4,14 @@
     require '/var/www/maaatch.com/db_auth.php';
 
     $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
-
+    
+    // get goat_id by name
     $stmt = $db->prepare('SELECT goat_id FROM goats WHERE name = ?;');
 	$stmt->bind_param('s', $_POST['goatName']);
 	$stmt->execute();
 	$goat_id = $stmt->get_result()->fetch_assoc()['goat_id'];
-
+    
+    // put order into orders table
 	$address = $_POST['address'] . "\n" . $_POST['city'] . ', ' . $_POST['state'] . ' ' . $_POST['zip'];
     $stmt = $db->prepare('INSERT INTO orders(user, date, speed, address, goat)
                           VALUES (?,NOW(),?,?,?);');

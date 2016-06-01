@@ -4,7 +4,8 @@
     require '/var/www/maaatch.com/db_auth.php';
 	require '/var/www/maaatch.com/htdocs/common/utility.php';
     login_redir('/login/', true);
-
+    
+    // pull in goat's name
     $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
     $stmt = $db->prepare('SELECT name FROM goats WHERE goat_id = ?;');
     $stmt->bind_param('s', $_GET['p']);

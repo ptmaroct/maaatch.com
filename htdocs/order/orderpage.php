@@ -4,7 +4,8 @@
     require '/var/www/maaatch.com/db_auth.php';
 	require '/var/www/maaatch.com/htdocs/common/utility.php';
     login_redir('/login/', true);
-
+    
+    // fetch all user data for current user
     $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
     $stmt = $db->prepare('SELECT * FROM users WHERE user_id = ?;');
     $stmt->bind_param('s', $_SESSION['user_id']);
@@ -12,12 +13,14 @@
     $res = $stmt->get_result();
     $user = $res->fetch_assoc();
 	
+    // fetch all goat data for selected goat
 	if(isset($_GET['g'])) {
 		$gstmt = $db->prepare('SELECT name FROM goats WHERE goat_id = ?;');
 		$gstmt->bind_param('s', $_GET['g']);
 		$gstmt->execute();
 		$gres = $gstmt->get_result();
 		if(!$gres->num_rows) {
+            // unless goat does not exist
 			header('Location: /goats/');
 			die();
 		}

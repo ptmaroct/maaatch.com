@@ -2,6 +2,7 @@
 	require('/var/www/maaatch.com/db_auth.php');
 	require('/var/www/maaatch.com/htdocs/common/utility.php');
 	
+    // get a list of all users and info based on search query
     $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
     $stmt = $db->prepare('SELECT username, CONCAT_WS(" ", name_first, name_last) AS name FROM users WHERE username LIKE ?;');
     $match = '%' . $_GET['q'] . '%';
@@ -9,6 +10,7 @@
     $stmt->execute();
     $res = $stmt->get_result();
     
+    // print results
     while($user = $res->fetch_assoc()) {
         $profile_url = '/wishlist/?user=' . urlencode($user['username']);
         echo '<div class="media">';

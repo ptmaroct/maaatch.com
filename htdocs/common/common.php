@@ -1,4 +1,5 @@
 <?php
+// head tags
 function head_tags() {
 echo '
 <meta charset="utf-8">
@@ -56,7 +57,8 @@ echo '
                     navelem("My Profile", "/settings/",    False);
                     navelem("My Orders",   "/order/", False);
                     navelem("My Wishlist", "/wishlist/",   False);
-                    navelem("Sell a Goat", "/post/",   False);
+					navelem("My Goats Posted", "/post/postlist.php", False);
+                    navelem("Post a Goat", "/post/",   False);
                     echo '<li role="separator" class="divider"></li>';
                     navelem("Log out",  "/login/logout.php",           False);
                 }
@@ -74,6 +76,7 @@ echo '              </ul>
 ';
 }
 
+// JS needed by bootstrap
 function bootstrap_js() {
 echo '
 <!-- Bootstrap core JavaScript
