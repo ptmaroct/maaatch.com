@@ -4,11 +4,7 @@
 
     // query goats from database
     $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
-    $stmt = $db->prepare('SELECT DISTINCT G.goat_id, G.name, G.age, G.gender 
-						  FROM goats G, goat_goattributes G1, user_goattributes U1
-						  WHERE U1.goattribute = G1.goattribute AND
-						  G1.goat = G.goat_id AND U1.user = ?;');
-    die($db->error);
+    $stmt = $db->prepare('SELECT goat_id, name, age, gender FROM goats ORDER BY RAND();');
     $stmt->bind_param('i', $_SESSION['user_id']);
     $stmt->execute();
     $res = $stmt->get_result();
