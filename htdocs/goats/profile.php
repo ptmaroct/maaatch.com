@@ -41,6 +41,15 @@
 	$stmt->execute();
 	$review = $stmt->get_result();
 	
+	//get star avg
+	$stmt = $db->prepare('SELECT DISTINCT AVG(stars) AS avgstars
+						   FROM goats G, users U, reviews R
+						   WHERE R.goat = ? AND R.user = U.user_id');
+	$stmt->bind_param('s', $_GET['p']);
+	$stmt->execute();
+	$starcounter = $stmt->get_result();
+	$staravg = $starcounter->fetch_assoc();
+	
 	//get user ids of users that have already reviewed said goat
 	$stmt = $db->prepare('SELECT DISTINCT user FROM reviews WHERE goat = ?;');
 	$stmt->bind_param('i', $_GET['p']);
@@ -78,6 +87,12 @@
                     echo '<i>' . ucfirst($goat['gender']) . '</i><br/>';
                     echo '<b>Age:</b> ' . $goat['age'] . '<br/>';
 					echo '<b>Price:</b> $' . $goat['price'] . '<br/>';
+					
+					//print average stars
+					if($review->num_rows > 0) {
+					echo '<p><b>Average Star Rating:</b> '. $staravg['avgstars'] . '</p>';
+					}
+					
                     if($goat['sellername']) {
                         echo '<b>Seller:</b> <a href="/wishlist/?user=' . $goat['selleruname'] . '">' . $goat['sellername'] . '</a><br/>';
                     }
@@ -91,11 +106,11 @@
                         }
                     echo '</div>';
 					echo '<section>';
-					echo '<h3>Reviews:</h3>';
-					//for each review
 					
+					//for each review
 					if($review->num_rows > 0) {
 						//output content
+						echo '<h3>Reviews:</h3>';
 						while($row = $review->fetch_assoc()) {
 							echo '<div class="panel panel-primary">';
 							echo '<div class="panel panel-heading">';

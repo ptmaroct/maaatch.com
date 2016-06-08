@@ -11,6 +11,18 @@
     $stmt->bind_param('ssiii', $_POST['name'], $_POST['gender'], $_POST['age'], $_POST['price'], $_SESSION['user_id']);
     $stmt->execute();
     
+	$stmt = $db->prepare('SELECT MAX(goat_id) FROM goats;');
+    echo $db->error;
+    $stmt->execute();
+    $goatid = $stmt->get_result()+1;
+
+    // update user goattributes
+	foreach($_POST['goattributes'] as $goattrib) {
+		$stmt = $db->prepare('INSERT INTO goat_goattributes (goat, goattribute) VALUES (?,?)');
+		$stmt->bind_param('ii', $goatid, $goattrib);
+		$stmt->execute();
+	}
+
     // create bio on disk
     if($_POST['bio']) {
         $goatdir = $datadir . '/goat' . $db->insert_id;

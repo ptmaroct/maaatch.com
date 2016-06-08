@@ -57,6 +57,7 @@ echo '
                     navelem("My Profile", "/settings/",    False);
                     navelem("My Orders",   "/order/", False);
                     navelem("My Wishlist", "/wishlist/",   False);
+                    navelem("My Maaatches", "/matches/",   False);
 					navelem("My Goats Posted", "/post/postlist.php", False);
                     navelem("Post a Goat", "/post/",   False);
                     echo '<li role="separator" class="divider"></li>';

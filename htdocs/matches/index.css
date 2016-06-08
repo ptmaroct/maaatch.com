@@ -1,0 +1,52 @@
+body {
+    padding-top: 80px;
+}
+
+#searchbar {
+    max-width: 330px;
+    margin: 0 auto;
+}
+
+#results {
+    max-width: 330px;
+    margin: 20px auto;
+}
+
+tbody {
+    width: 100%;
+    display: table;
+}
+
+.imagetd {
+    width: 128px;
+}
+
+.media-object {
+    width: 96px;
+    height: 96px;
+}
+
+#goatpic {
+	border-radius: 50px;
+    margin: 30px;
+    max-height: 256px;
+    max-width: 256px;
+}
+
+#profbody {
+    max-width: 600px;
+    margin: auto;
+    padding-bottom: 2rem;
+}
+
+#tags {
+    margin: 10px;
+}
+
+#tags button {
+margin: 5px;
+}
+
+.starwrapper {
+    margin-left: 3em;
+}
