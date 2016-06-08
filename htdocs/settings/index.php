@@ -11,6 +11,9 @@
     $stmt->execute();
     $res = $stmt->get_result();
     $user = $res->fetch_assoc();
+    
+    // get all tags 
+    $tags = $db->query('SELECT * FROM goattributes;');
 
     // get user tags
 	$stmt = $db->prepare('SELECT goattribute FROM user_goattributes WHERE user = ?;');
@@ -18,8 +21,8 @@
     $stmt->execute();
     $res = $stmt->get_result();
 	$i = 0;
-	while ($row = $res->fetch_array()) {
-		$cb[$i] = $row[0];
+	while ($row = $res->fetch_assoc()) {
+		$cb[$i] = $row['goattribute'];
 		$i += 1;
 	}
 
@@ -81,54 +84,14 @@
 				<div class="form-group row">
 					<label for="goattributes" class="col-xs-2 form-control-label">Goattributes:</label>
 					<div class="col-xs-10">
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="1"
-							<?php if( in_array("1", $cb)) echo "checked"; ?> >Foodie</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="2"
-							<?php if( in_array("2", $cb)) echo "checked"; ?> >Night Owl</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="3"
-							<?php if( in_array("3", $cb)) echo "checked"; ?> >Early Bird</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="4"
-							<?php if( in_array("4", $cb)) echo "checked"; ?> >Athletic</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="5"
-							<?php if( in_array("5", $cb)) echo "checked"; ?> >Couch Potato</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="6"
-							<?php if( in_array("6", $cb)) echo "checked"; ?> >Intellectual</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="7"
-							<?php if( in_array("7", $cb)) echo "checked"; ?> >Traveler</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="8"
-							<?php if( in_array("8", $cb)) echo "checked"; ?> >Workaholic</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="9"
-							<?php if( in_array("9", $cb)) echo "checked"; ?> >Shopaholic</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="10"
-							<?php if( in_array("10", $cb)) echo "checked"; ?> >Introvert</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="11"
-							<?php if( in_array("11", $cb)) echo "checked"; ?> >Extrovert</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="12"
-							<?php if( in_array("12", $cb)) echo "checked"; ?> >Intuitive</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="13"
-							<?php if( in_array("13", $cb)) echo "checked"; ?> >Sensitive</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="14"
-							<?php if( in_array("14", $cb)) echo "checked"; ?> >Thoughtful</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="15"
-							<?php if( in_array("15", $cb)) echo "checked"; ?> >Perceptive</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="16"
-							<?php if( in_array("16", $cb)) echo "checked"; ?> >Listener</label>
+                        <?php
+                            while($tag = $tags->fetch_assoc()) {
+                                echo '<label class="checkbox-inline">
+                                    <input class="checkbox" name="ga' . $tag['goattribute_id'] .
+                                    '" type="checkbox" ' . (in_array($tag['goattribute_id'], $cb)?'checked':'') .
+                                    ' value="true"/>' . $tag['name'] . '</label>' . "\n";
+                            }
+                        ?>
 					</div>
 				</div>
 

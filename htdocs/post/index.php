@@ -1,7 +1,10 @@
 <?php
 	session_start();
 	require('/var/www/maaatch.com/htdocs/common/utility.php');
+	require '/var/www/maaatch.com/db_auth.php';
 	login_redir("/login/", true);
+    $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
+    $tags = $db->query('SELECT * FROM goattributes;');
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,43 +52,15 @@
 				<!-- Goattributes -->
 				<div class="form-group row">
 					<label for="goattributes" class="form-control-label">Goattributes:</label>
-					<div class="">
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="1">Foodie</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="2">Night Owl</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="3">Early Bird</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="4">Athletic</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="5">Couch Potato</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="6">Intellectual</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="7">Traveler</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="8">Workaholic</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="9">Shopaholic</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="10">Introvert</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="11">Extrovert</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="12">Intuitive</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="13">Sensitive</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="14">Thoughtful</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="15">Perceptive</label>
-						<label class="checkbox-inline"><input type="checkbox"  
-							id="goattributes" name="goattributes[]" value="16" >Listener</label>
-					</div>
-				</div>
-
-
+                    <br/>
+                    <?php
+                        while($tag = $tags->fetch_assoc()) {
+                            echo '<label class="checkbox-inline">
+                                <input class="checkbox" name="ga' . $tag['goattribute_id'] .
+                                '" type="checkbox" value="true"/>' . $tag['name'] . '</label>' . "\n";
+                        }
+                    ?>
+                </div>
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 			</form>
 		</main>

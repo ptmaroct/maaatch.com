@@ -11,24 +11,30 @@
     $stmt->bind_param('ssiii', $_POST['name'], $_POST['gender'], $_POST['age'], $_POST['price'], $_SESSION['user_id']);
     $stmt->execute();
     
-	$stmt = $db->prepare('SELECT MAX(goat_id) FROM goats;');
-    echo $db->error;
-    $stmt->execute();
-    $goatid = $stmt->get_result()+1;
+	$goatid = $db->insert_id;
 
-    // update user goattributes
-	foreach($_POST['goattributes'] as $goattrib) {
+    // update goattributes
+    $tags = array_values(
+                array_filter(
+                    array_keys($_POST),
+                    function($d) use ($_POST) {
+                        return substr($d, 0, 2) == 'ga';
+                    }
+                )
+            );
+	foreach($tags as $tag) {
+        $tag = intval(substr($tag, 2));
 		$stmt = $db->prepare('INSERT INTO goat_goattributes (goat, goattribute) VALUES (?,?)');
-		$stmt->bind_param('ii', $goatid, $goattrib);
+		$stmt->bind_param('ii', $goatid, $tag);
 		$stmt->execute();
 	}
 
     // create bio on disk
     if($_POST['bio']) {
-        $goatdir = $datadir . '/goat' . $db->insert_id;
+        $goatdir = $datadir . '/goat' . $goatid;
         if(file_exists($goatdir) || mkdir($goatdir, 0777)) {
             file_put_contents($goatdir . '/bio', htmlspecialchars(substr($_POST['bio'],0,1024)));
         }
     }
-	header('Location: /goats/profile.php?p=' . $db->insert_id);
+	header('Location: /goats/profile.php?p=' . $goatid);
 ?>
